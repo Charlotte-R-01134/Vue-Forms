@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import SimpleForm from '@/views/SimpleForm'
+import SimpleForm from './views/SimpleForm.vue'
 
 export default {
   components: { SimpleForm }

@@ -1,5 +1,5 @@
 <template>
-  <label v-if="label">{{ label }}</label>
+  <label v-if="label">{{  label }}</label>
   <input
     v-bind="$attrs"
     :value="modelValue"
@@ -8,6 +8,8 @@
     class="field"
   >
 </template>
+
+<!-- v-bind is used so that css classes are still applied */ -->
 
 <script>
 export default {
