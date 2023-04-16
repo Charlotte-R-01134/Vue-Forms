@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Create an event</h1>
-    <form>
+    <form @submit.prevent="sendForm">
       <BaseSelect
         v-model="event.category"
         :options="categories"
@@ -32,6 +32,7 @@
       />
 
       <h3>Are pets allowed?</h3>
+
       <div>
         <BaseRadioGroup
           v-model="event.pets"
@@ -42,6 +43,7 @@
       </div>
 
       <h3>Extras</h3>
+
       <div>
         <BaseCheckbox
           v-model="event.extras.catering"
@@ -52,7 +54,7 @@
       <div>
         <BaseCheckbox
           v-model="event.extras.music"
-          label="Music"
+          label="Live Music"
         />
       </div>
 
@@ -62,6 +64,7 @@
 </template>
 
 <script>
+import axios from "axios";
 
 export default {
     data() {
@@ -92,5 +95,16 @@ export default {
             ]
         };
     },
+    methods: {
+        sendForm() {
+          axios.post("http://localhost:3000/events", this.event)
+            .then(function (response) {
+              console.log(this.event);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+    }
 }
 </script>

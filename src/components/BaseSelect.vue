@@ -1,20 +1,20 @@
 <template>
   <label v-if="label">{{ label }}</label>
-    <select 
-      v-bind="{
-        ...$attrs,
-        onChange: ($event) => { $emit('update:modelValue', event.target.value)}
-      }"
-      :value="modelValue"
-      class="field"
-      >
-      <option
-        v-for="option in options"
-        :value="option"
-        :key="option"
-        :selected="option === modelValue"
-      >{{ option }}</option>
-      </select>
+  <select
+    class="field"
+    :value="modelValue"
+    v-bind="{
+      ...$attrs,
+      onChange: ($event) => { $emit('update:modelValue', $event.target.value) }
+    }"
+  >
+    <option
+      v-for="option in options"
+      :value="option"
+      :key="option"
+      :selected="option === modelValue"
+    >{{ option }}</option>
+  </select>
 </template>
 
 <script>
