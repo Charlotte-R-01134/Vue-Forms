@@ -74,31 +74,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-export default {
-  data () {
-    return {
-      categories: [
-        'sustainability',
-        'nature',
-        'animal welfare',
-        'housing',
-        'education',
-        'food',
-        'community'
-      ],
-      event: {
-        category: '',
-        title: '',
-        description: '',
-        location: '',
-        pets: 1,
-        extras: {
-          catering: false,
-          music: false
-        }
-      }
-=======
 import axios from "axios";
 
 export default {
@@ -140,7 +115,6 @@ export default {
               console.log(error);
             });
         }
->>>>>>> l2-end
     }
 }
 </script>
