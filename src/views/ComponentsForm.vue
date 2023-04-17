@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Create an Event</h1>
+
     <form @submit.prevent="submit">
       <BaseSelect
         label="Select a category"
@@ -10,6 +11,7 @@
       />
 
       <h3>Name & describe your event</h3>
+
       <BaseInput
         label="Title"
         type="text"
@@ -25,6 +27,7 @@
       />
 
       <h3>Where is your event?</h3>
+
       <BaseInput
         label="Location"
         type="text"
@@ -33,6 +36,7 @@
       />
 
       <h3>Are pets allowed?</h3>
+
       <BaseRadioGroup
         name="pets"
         :options="[
@@ -75,6 +79,7 @@
 
 <script>
 import { useField, useForm } from 'vee-validate'
+import {object, string, number, boolean } from 'yup'
 
 export default {
   data() {
@@ -117,41 +122,15 @@ export default {
         }
     },
   setup () {
-    const required = value => {
-      const requiredMessage = 'This field is required'
-      if (value === undefined || value === null) return requiredMessage
-      if (!String(value).length) return requiredMessage
-
-      return true
-    }
-
-    const minLength = (number, value) => {
-      if (String(value).length < number) return 'Please type at least ' + number + ' characters'
-
-      return true
-    }
-
-    const anything = () => {
-      return true
-    }
-
-    const validationSchema = {
-      category: required,
-      title: value => {
-        const req = required(value)
-        if (req != true) return req
-
-        const min = minLength(3, value)
-        if (min != true) return min
-
-        return true
-      },
-      description: required,
-      location: undefined,
-      pets: anything,
-      catering: anything,
-      music: anything
-    }
+    const validationSchema = object({
+      category: string().required(),
+      title: string().required('A cool title is required').min(3),
+      description: string().required(),
+      location: string(),
+      pets: number(),
+      catering: boolean(),
+      music: boolean()
+    })
 
     const { handleSubmit, errors } = useForm({
       validationSchema,
