@@ -1,14 +1,16 @@
 <template>
   <div id="app">
-    <SimpleForm />
+    <!-- <SimpleForm /> -->
+    <LoginForm />
   </div>
 </template>
 
 <script>
+import LoginForm from './views/LoginForm.vue';
 import SimpleForm from './views/SimpleForm.vue'
 
 export default {
-  components: { SimpleForm }
+  components: { SimpleForm, LoginForm }
 }
 </script>
 
@@ -199,6 +201,7 @@ textarea {
 [type="text"],
 [type="number"],
 [type="search"],
+[type="email"],
 [type="password"] {
   height: 52px;
   width: 100%;
@@ -208,6 +211,7 @@ textarea {
 [type="text"]:focus,
 [type="number"]:focus,
 [type="search"]:focus,
+[type="email"]:focus,
 [type="password"]:focus {
   border-color: #39b982;
 }
