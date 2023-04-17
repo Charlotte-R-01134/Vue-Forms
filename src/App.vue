@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <!-- <SimpleForm /> -->
-    <!-- <LoginForm /> -->
-    <ComponentsForm />
+    <LoginForm />
+    <!-- <ComponentsForm /> -->
   </div>
 </template>
 
