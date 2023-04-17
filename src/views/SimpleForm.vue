@@ -1,43 +1,12 @@
 <template>
   <div>
     <h1>Create an event</h1>
-<<<<<<< HEAD
-    <form>
-
-      <label>Select a category</label>
-      <select v-model="event.category">
-        <option
-          v-for="option in categories"
-          :value="option"
-          :key="option"
-          :selected="option === event.category"
-        >{{ option }}</option>
-      </select>
-
-      <h3>Name & describe your event</h3>
-
-      <label>Title</label>
-      <input
-        v-model="event.title"
-        type="text"
-        placeholder="Title"
-        class="field"
-      >
-
-      <label>Description</label>
-      <input
-        v-model="event.description"
-        type="text"
-        placeholder="Description"
-        class="field"
-=======
     <form @submit.prevent="sendForm">
       <BaseSelect
         v-model="event.category"
         :options="categories"
         label="Select a category"
->>>>>>> l2-end
-      />
+        />
 
       <fieldset>
         <legend>Name & describe your event</legend>
