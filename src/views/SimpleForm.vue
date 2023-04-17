@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Create an event</h1>
+<<<<<<< HEAD
     <form>
 
       <label>Select a category</label>
@@ -29,66 +30,82 @@
         type="text"
         placeholder="Description"
         class="field"
+=======
+    <form @submit.prevent="sendForm">
+      <BaseSelect
+        v-model="event.category"
+        :options="categories"
+        label="Select a category"
+>>>>>>> l2-end
       />
 
-      <h3>Where is your event?</h3>
+      <fieldset>
+        <legend>Name & describe your event</legend>
 
-      <label>Location</label>
-      <input
-        v-model="event.location"
-        type="text"
-        placeholder="Location"
-        class="field"
-      />
+        <BaseInput
+          v-model="event.title"
+          label="Title"
+          type="text"
+          error="Please enter a title"
+        />
 
-      <h3>Are pets allowed?</h3>
-      <div>
-        <input
-            type="radio"
+        <BaseInput
+          v-model="event.description"
+          label="Description"
+          type="text"
+        />
+      </fieldset>
+
+      <fieldset>
+        <legend>Where is your event?</legend>
+
+        <BaseInput
+          v-model="event.location"
+          label="Location"
+          type="text"
+        />
+      </fieldset>
+
+
+      <fieldset>
+        <legend>Are pets allowed?</legend>
+
+        <div>
+          <BaseRadioGroup
             v-model="event.pets"
-            :value="1"
             name="pets"
+            :options="petOptions"
+            :vertical=true
           />
-        <label>Yes</label>
-      </div>
+        </div>
+      </fieldset>
 
-      <div>
-        <input
-          type="radio"
-          v-model="event.pets"
-          :value="0"
-          name="pets"
-        />
-        <label>No</label>
-      </div>
+      <fieldset>
+        <legend>Extras</legend>
 
-      <h3>Extras</h3>
-      <div>
-        <input
-          type="checkbox"
-          v-model="event.extras.catering"
-          class="field"
-        />
-        <label>Catering</label>
-      </div>
+        <div>
+          <BaseCheckbox
+            v-model="event.extras.catering"
+            label="Catering"
+          />
+        </div>
 
-      <div>
-        <input
-          type="checkbox"
-          v-model="event.extras.music"
-          class="field"
-        />
-        <label>Live music</label>
-      </div>
+        <div>
+          <BaseCheckbox
+            v-model="event.extras.music"
+            label="Live Music"
+          />
+        </div>
+        
+      </fieldset>
 
-      <button type="submit">Submit</button>
+      <button class="button -fill-gradient" type="submit">Submit</button>
     </form>
-
-    <pre>{{ event }}</pre>
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 export default {
   data () {
     return {
@@ -112,7 +129,63 @@ export default {
           music: false
         }
       }
+=======
+import axios from "axios";
+
+export default {
+    data() {
+        return {
+            categories: [
+                "sustainability",
+                "nature",
+                "animal welfare",
+                "housing",
+                "education",
+                "food",
+                "community"
+            ],
+            event: {
+                category: "",
+                title: "",
+                description: "",
+                location: "",
+                pets: 1,
+                extras: {
+                    catering: false,
+                    music: false
+                }
+            },
+            petOptions: [
+                { label: "Yes", value: 1 },
+                { label: "No", value: 0 }
+            ]
+        };
+    },
+    methods: {
+        sendForm() {
+          axios.post("http://localhost:3000/events", this.event)
+            .then(function (response) {
+              console.log(this.event);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        }
+>>>>>>> l2-end
     }
-  }
 }
 </script>
+
+<style scoped>
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 20px;
+}
+</style>
